@@ -1,0 +1,25 @@
+{
+    "log_level": "info",
+    "check_interval_sec": 1,
+    "timeouts": {
+        "request_sec": 3,
+        "connect_msec": 1000
+    },
+    "delegate": {
+        "address": "delegate_address",
+        "publicKey": "delegate_publicKey",
+        "secret": "delegate_secret"
+    },
+    "servers": [
+        {
+            "name": "mainnet-1 #1",
+            "ip": "127.0.0.1",
+            "port": 8000
+        },
+        {
+            "name": "mainnet-1 #2",
+            "ip": "127.0.0.1",
+            "port": 8001
+        }
+    ]
+}

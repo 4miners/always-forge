@@ -18,7 +18,7 @@ cp config.json.example config.json
 Edit `config.json` to your needs:
 ```
 {
-    "log_level": "info", // Log details level: debug, info, node
+    "log_level": "info", // Log details level: debug, info, none
     "check_interval_sec": 1, // Checker will pause for that interval each loop
     "timeouts": {
         "request_sec": 3, // Timeout for cURL request, must be higher than connect_msec

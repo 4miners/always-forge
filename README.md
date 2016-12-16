@@ -22,7 +22,7 @@ Edit `config.json` to your needs:
     "check_interval_sec": 1, // Checker will pause for that interval each loop
     "timeouts": {
         "request_sec": 3, // Timeout for cURL request, must be higher than connect_msec
-        "connect_msec": 1000 // Timeout for cURL connection estabilisment
+        "connect_msec": 1000 // Timeout for cURL connection establishment
     },
     "delegate": {
         "address": "delegate_address", // Your delegate address

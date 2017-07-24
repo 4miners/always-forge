@@ -48,7 +48,7 @@ Edit `config.json` to your needs:
 
 Save config and test it:
 ```
-php always-forge.php
+php always_forge.php
 ```
 If it works - add to your crontab `monitor_always_forge.sh` to run every minute, for example: `crontab -e`, then insert:
 ```

@@ -7,6 +7,9 @@ class Config {
     const LOGGER_LEVEL_INFO  = 'LOGGER_LEVEL_INFO';
     const LOGGER_LEVEL_NONE  = 'LOGGER_LEVEL_NONE';
 
+    const API_VERSION_0 = 'API_VERSION_0';
+    const API_VERSION_1 = 'API_VERSION_1';
+
     private static $_instance;
     public static $dir, $logger_level;
 

@@ -8,18 +8,21 @@
     "delegate": {
         "address": "delegate_address",
         "publicKey": "delegate_publicKey",
-        "secret": "delegate_secret"
+        "secret": "delegate_secret",
+        "password": "password"
     },
     "servers": [
         {
             "name": "mainnet-1 #1",
             "ip": "127.0.0.1",
-            "port": 8000
+            "port": 8000,
+            "ssl": false
         },
         {
             "name": "mainnet-1 #2",
             "ip": "127.0.0.1",
-            "port": 8001
+            "port": 8001,
+            "ssl": false
         }
     ]
 }

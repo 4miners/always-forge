@@ -1,6 +1,6 @@
 <?php
 
-class LiskAPI {
+class LiskAPI0 {
     private $_curl;
 
     public function __construct () {
@@ -20,6 +20,10 @@ class LiskAPI {
             $result = $this->_curl->exec ();
         } catch (Exception $e) {
             Logger::log (Logger::WARNING, "[{$server->name}] " . $e->getMessage ());
+            if ($this->_curl->getInfo (CURLINFO_HTTP_CODE) === 404) {
+                $server->version = Config::API_VERSION_1;
+                Logger::log (Logger::INFO, "[{$server->name}] Switched API version: {$server->version}");
+            }
             return false;
         }
         $json = json_decode($result);
@@ -31,21 +35,24 @@ class LiskAPI {
     }
 
     public function getStatus ($server) {
-        $url = "https://{$server->ip}:{$server->port}/api/loader/status/sync";
+        $protocol = $server->ssl ? 'https' : 'http';
+        $url = "{$protocol}://{$server->ip}:{$server->port}/api/loader/status/sync";
         $this->_curl->setPost (null);
         $this->_curl->setUrl ($url);
         return $this->_send_request ($server);
     }
 
     public function getForgingStatus ($server, $publicKey) {
-        $url = "https://{$server->ip}:{$server->port}/api/delegates/forging/status?publicKey={$publicKey}";
+        $protocol = $server->ssl ? 'https' : 'http';
+        $url = "{$protocol}://{$server->ip}:{$server->port}/api/delegates/forging/status?publicKey={$publicKey}";
         $this->_curl->setPost (null);
         $this->_curl->setUrl ($url);
         return $this->_send_request ($server);
     }
 
     public function disableForging ($server, $secret) {
-        $url = "https://{$server->ip}:{$server->port}/api/delegates/forging/disable";
+        $protocol = $server->ssl ? 'https' : 'http';
+        $url = "{$protocol}://{$server->ip}:{$server->port}/api/delegates/forging/disable";
         $post = array (
             'secret' => $secret
         );
@@ -56,7 +63,8 @@ class LiskAPI {
     }
 
     public function enableForging ($server, $secret) {
-        $url = "https://{$server->ip}:{$server->port}/api/delegates/forging/enable";
+        $protocol = $server->ssl ? 'https' : 'http';
+        $url = "{$protocol}://{$server->ip}:{$server->port}/api/delegates/forging/enable";
         $post = array (
             'secret' => $secret
         );

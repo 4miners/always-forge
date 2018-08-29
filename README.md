@@ -2,7 +2,9 @@
 **AlwaysForge** is PHP forging fail-over for **Lisk** cryptocurrency. It will monitor all your nodes in real-time and switch forging to best server available. It uses active (maybe a little too aggressive) approach and best practices.
 
 ## Version:
-`1.0.0`
+`2.0.0`
+
+This version is **fully compatible** with `Lisk Core 0.9.x` and `Lisk Core 1.0.x`. Version of Lisk Core running on each server is detected **automatically** on the fly and script switch to using the right API.
 
 ## Dependencies:
 Script require **PHP** with **cURL** support and **Cron**. If you want to run it on hosting instead of VPS - one with **SLA 99.99%** is highly recommended.
@@ -27,7 +29,8 @@ Edit `config.json` to your needs:
     "delegate": {
         "address": "delegate_address", // Your delegate address
         "publicKey": "delegate_publicKey", // Your delegate public key
-        "secret": "delegate_secret" // Your delegate secret
+        "secret": "delegate_secret", // Your delegate secret
+        "password": "password" // Password for decrypting your encrypted passphrase
     },
     // List of servers, first server will have highest priority, last - lowest priority
     // Each server must have unique name! For your delegate security HTTPS connection is forced!
@@ -35,12 +38,14 @@ Edit `config.json` to your needs:
         {
             "name": "mainnet-1 #1",
             "ip": "127.0.0.1",
-            "port": 8000
+            "port": 8000,
+            "ssl": true
         },
         {
             "name": "mainnet-1 #2",
             "ip": "127.0.0.1",
-            "port": 8001
+            "port": 8001,
+            "ssl": true
         }
     ]
 }

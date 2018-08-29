@@ -35,7 +35,8 @@ class LiskAPI1 {
     }
 
     public function getStatus ($server) {
-        $url = "http://{$server->ip}:{$server->port}/api/node/status";
+        $protocol = $server->ssl ? 'https' : 'http';
+        $url = "{$protocol}://{$server->ip}:{$server->port}/api/node/status";
         $this->_curl->setPost (null);
         $this->_curl->setUrl ($url);
         $response = $this->_send_request ($server);

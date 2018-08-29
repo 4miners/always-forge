@@ -61,25 +61,25 @@ class LiskAPI1 {
     public function disableForging ($server, $password, $publicKey) {
         $protocol = $server->ssl ? 'https' : 'http';
         $url = "{$protocol}://{$server->ip}:{$server->port}/api/node/status/forging";
-        $put = array (
-            'true' => false,
+        $put = json_encode ([
+            'forging' => false,
             'password' => $password,
             'publicKey' => $publicKey
-        );
+        ]);
 
         $this->_curl->setUrl ($url);
-        $this->_curl->setPut ($post);
+        $this->_curl->setPut ($put);
         return $this->_send_request ($server);
     }
 
     public function enableForging ($server, $password, $publicKey) {
         $protocol = $server->ssl ? 'https' : 'http';
         $url = "{$protocol}://{$server->ip}:{$server->port}/api/node/status/forging";
-        $put = array (
-            'true' => true,
+        $put = json_encode ([
+            'forging' => true,
             'password' => $password,
             'publicKey' => $publicKey
-        );
+        ]);
 
         $this->_curl->setUrl ($url);
         $this->_curl->setPut ($put);

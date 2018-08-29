@@ -53,8 +53,10 @@ class LiskAPI1 {
         $this->_curl->setPost (null);
         $this->_curl->setUrl ($url);
         $response = $this->_send_request ($server);
-        if (isset($response->data->forging) && $response->data->forging) {
+        if (isset($response->data[0]->forging) && $response->data[0]->forging) {
             $response->enabled = true;
+        } else {
+            $response->enabled = false;
         }
         return $response;
     }
